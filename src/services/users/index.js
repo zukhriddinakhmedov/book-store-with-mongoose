@@ -1,5 +1,7 @@
 import express from "express"
+import createHttpError from "http-errors"
 import UserModel from "./schema.js"
+import BookModel from "../books/schema.js"
 
 const usersRouter = express.Router()
 
@@ -16,8 +18,6 @@ usersRouter.get("/", async (req, res, next) => {
 usersRouter.get("/:userId", async (req, res, next) => {
     try {
         const userId = req.params.userId
-
-        const user = await
     } catch (error) {
 
     }
