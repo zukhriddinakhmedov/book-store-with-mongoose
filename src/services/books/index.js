@@ -9,16 +9,21 @@ booksRouter.get("/", async (req, res, next) => {
     try {
         const mongoQuery = q2m(req.query)
         console.log(mongoQuery)
-        const books = await BookModel.find(mongoQuery.criteria, mongoQuery.options.fields)
-            .limit(mongoQuery.options.limit)
-            .skip(mongoQuery.options.skip)
-            .sort(mongoQuery.options.sort) //no matter how i write them 
-            //but Mongo will always apply SORT then
-            // SKIP then LIMIT in this order
-            .populate()
-        res.send(books)
+        const { total, books } = await BookModel.findBookWithAuthors(mongoQuery)
+        res.send({ links: mongoQuery.links("/books", total), total, pageTotal: Math.ceil(total / mongoQuery.options.limit), books })
     } catch (error) {
         next(error)
     }
 })
 
+booksRouter.post("/", async (req, res, next) => {
+    try {
+        const newBook = new BookModel(req.body)
+        const { _id } = await newBook.save()
+        res.send({ _id })
+    } catch (error) {
+        next(error)
+    }
+})
+
+export default booksRouter

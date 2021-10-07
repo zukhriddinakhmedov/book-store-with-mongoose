@@ -71,3 +71,5 @@ usersRouter.post("/:userId/purchaseHistory", async (req, res, next) => {
 
     }
 })
+
+export default usersRouter

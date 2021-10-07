@@ -5,7 +5,7 @@ import cors from "cors"
 import usersRouter from "./services/users/index.js"
 import booksRouter from "./services/books/index.js"
 import authorsRouter from "./services/authors/index.js"
-import cartsRouter from "./services/carts/index.js"
+//import cartsRouter from "./services/carts/index.js"
 
 
 const server = express()
@@ -22,14 +22,14 @@ server.use(express.json())
 server.use("/users", usersRouter)
 server.use("books", booksRouter)
 server.use("/authors", authorsRouter)
-server.use("/carts", cartsRouter)
+// server.use("/carts", cartsRouter)
 
 //---------------ERROR HANDLERS-----------------
 
 mongoose.connect(process.env.MONGO_CONNECTION)
 
 mongoose.connection.on("connected", () => {
-    console.log("Successgully connected to Mongo!")
+    console.log("Successfully connected to Mongo!")
     server.listen(port, () => {
         console.table(listEndpoints(server))
         console.log(`Server running on port ${port}`)

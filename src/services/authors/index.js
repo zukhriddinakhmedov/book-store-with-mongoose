@@ -1,6 +1,5 @@
 import express from "express"
-import q2m from "query-to-mongo"
-
+import q2m from "query-to-mongo" // translates something like category=horror&price<10&limit=5&sort=price&offSet=10&fields=title
 
 import AuthorModel from "./schema.js"
 
