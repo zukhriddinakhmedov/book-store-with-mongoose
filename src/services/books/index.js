@@ -13,7 +13,7 @@ booksRouter.get("/", async (req, res, next) => {
         res.send({ links: mongoQuery.links("/books", total), total, pageTotal: Math.ceil(total / mongoQuery.options.limit), books })
     } catch (error) {
         next(error)
-        console.log(error)
+
     }
 })
 

@@ -20,7 +20,7 @@ server.use(express.json())
 //--------------------------ROUTES----------------------
 
 server.use("/users", usersRouter)
-server.use("books", booksRouter)
+server.use("/books", booksRouter)
 server.use("/authors", authorsRouter)
 server.use("/carts", cartsRouter)
 
